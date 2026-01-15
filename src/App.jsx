@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -8,6 +8,9 @@ function App() {
   const [feedback, setFeedback] = useState('')
   const [showAnswer, setShowAnswer] = useState(false)
   const [score, setScore] = useState({ correct: 0, total: 0 })
+  
+  const inputRef = useRef(null)
+  const nextButtonRef = useRef(null)
 
   useEffect(() => {
     // Load words from JSON file
@@ -33,7 +36,7 @@ function App() {
     const correctAnswer = currentWord.direction === 'toSwedish' 
       ? currentWord.swedish 
       : currentWord.english
-    const isCorrect = userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()
+    const isCorrect = userAnswer.replace(/[\s?]+/g, '').toLowerCase() === correctAnswer.replace(/[\s?]+/g, '').toLowerCase()
 
     if (isCorrect) {
       setFeedback('✅ Correct! Well done!')
@@ -43,6 +46,9 @@ function App() {
       setScore(prev => ({ ...prev, total: prev.total + 1 }))
       setShowAnswer(true)
     }
+    
+    // Focus the next button after checking
+    setTimeout(() => nextButtonRef.current?.focus(), 0)
   }
 
   const handleNext = () => {
@@ -51,6 +57,8 @@ function App() {
       setUserAnswer('')
       setFeedback('')
       setShowAnswer(false)
+      // Focus input for the next word
+      setTimeout(() => inputRef.current?.focus(), 0)
     } else {
       setFeedback('🎉 You\'ve completed all words!')
     }
@@ -68,6 +76,8 @@ function App() {
     setFeedback('')
     setShowAnswer(false)
     setScore({ correct: 0, total: 0 })
+    // Focus input when restarting
+    setTimeout(() => inputRef.current?.focus(), 0)
   }
 
   if (words.length === 0) {
@@ -102,6 +112,7 @@ function App() {
 
         <form onSubmit={handleSubmit}>
           <input
+            ref={inputRef}
             type="text"
             value={userAnswer}
             onChange={(e) => setUserAnswer(e.target.value)}
@@ -126,11 +137,11 @@ function App() {
         {feedback && (
           <div className="actions">
             {!isLastWord ? (
-              <button onClick={handleNext} className="btn-primary">
+              <button ref={nextButtonRef} onClick={handleNext} className="btn-primary">
                 Next Word →
               </button>
             ) : (
-              <button onClick={handleRestart} className="btn-primary">
+              <button ref={nextButtonRef} onClick={handleRestart} className="btn-primary">
                 🔄 Start Over
               </button>
             )}
