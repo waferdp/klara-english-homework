@@ -36,7 +36,7 @@ function App() {
     const correctAnswer = currentWord.direction === 'toSwedish' 
       ? currentWord.swedish 
       : currentWord.english
-    const isCorrect = userAnswer.replace(/[\s?]+/g, '').toLowerCase() === correctAnswer.replace(/[\s?]+/g, '').toLowerCase()
+    const isCorrect = userAnswer.replace(/[\s?,]+/g, '').toLowerCase() === correctAnswer.replace(/[\s?,]+/g, '').toLowerCase()
 
     if (isCorrect) {
       setFeedback('✅ Correct! Well done!')
