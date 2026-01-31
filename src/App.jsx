@@ -1,5 +1,10 @@
+
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import { loadWords, reshuffleWords } from './wordsModule.js'
+import { loadVerbs, reshuffleVerbs } from './verbsModule.js'
+import WordsCard from './WordsCard.jsx'
+import VerbsCard from './VerbsCard.jsx'
 
 function App() {
   const [mode, setMode] = useState('words') // 'words' or 'verbs'
@@ -15,30 +20,12 @@ function App() {
   const nextButtonRef = useRef(null)
 
   useEffect(() => {
-    // Load words from JSON file
-    fetch(`${import.meta.env.BASE_URL}words.json`)
-      .then(response => response.json())
-      .then(data => {
-        // Shuffle the words and randomly assign direction (English->Swedish or Swedish->English)
-        const shuffled = [...data].map(word => ({
-          ...word,
-          direction: Math.random() > 0.5 ? 'toSwedish' : 'toEnglish'
-        })).sort(() => Math.random() - 0.5)
-        setWords(shuffled)
-      })
+    // Load words and verbs using modules
+    loadWords()
+      .then(setWords)
       .catch(error => console.error('Error loading words:', error))
-    
-    // Load irregular verbs from JSON file
-    fetch(`${import.meta.env.BASE_URL}irregular-verbs.json`)
-      .then(response => response.json())
-      .then(data => {
-        // Shuffle verbs and randomly assign which form to test
-        const shuffled = [...data].map(verb => ({
-          ...verb,
-          testForm: ['infinitive', 'past', 'pastParticiple'][Math.floor(Math.random() * 3)]
-        })).sort(() => Math.random() - 0.5)
-        setVerbs(shuffled)
-      })
+    loadVerbs()
+      .then(setVerbs)
       .catch(error => console.error('Error loading verbs:', error))
   }, [])
 
@@ -103,19 +90,9 @@ function App() {
 
   const handleRestart = () => {
     if (mode === 'words') {
-      // Reshuffle words and randomly assign new directions
-      const shuffled = [...words].map(word => ({
-        ...word,
-        direction: Math.random() > 0.5 ? 'toSwedish' : 'toEnglish'
-      })).sort(() => Math.random() - 0.5)
-      setWords(shuffled)
+      setWords(reshuffleWords(words))
     } else {
-      // Reshuffle verbs and randomly assign new test forms
-      const shuffled = [...verbs].map(verb => ({
-        ...verb,
-        testForm: ['infinitive', 'past', 'pastParticiple'][Math.floor(Math.random() * 3)]
-      })).sort(() => Math.random() - 0.5)
-      setVerbs(shuffled)
+      setVerbs(shu(verbs))
     }
     setCurrentIndex(0)
     setUserAnswer('')
@@ -142,33 +119,7 @@ function App() {
     return <div className="loading">Loading {mode === 'words' ? 'words' : 'verbs'}...</div>
   }
 
-  let currentItem, isLastItem, displayWord, questionText, placeholder
-
-  if (mode === 'words') {
-    currentItem = words[currentIndex]
-    isLastItem = currentIndex === words.length - 1
-    const sourceWord = currentItem.direction === 'toSwedish' ? currentItem.english : currentItem.swedish
-    const targetLanguage = currentItem.direction === 'toSwedish' ? 'Swedish' : 'English'
-    const sourceLanguage = currentItem.direction === 'toSwedish' ? 'English' : 'Swedish'
-    displayWord = sourceWord
-    questionText = `Translate this ${sourceLanguage} word to ${targetLanguage}:`
-    placeholder = `Type the ${targetLanguage} translation...`
-  } else {
-    // Irregular verbs mode
-    currentItem = verbs[currentIndex]
-    isLastItem = currentIndex === verbs.length - 1
-    displayWord = currentItem.swedish
-    
-    const formClues = {
-      infinitive: 'to...',
-      past: 'yesterday I...',
-      pastParticiple: 'I have/had...'
-    }
-    
-    questionText = `What is the ${currentItem.testForm.replace('pastParticiple', 'past participle')} form? (${formClues[currentItem.testForm]})`
-    placeholder = 'Type the English verb form...'
-  }
-
+  const isLastItem = currentIndex === currentList.length - 1;
   return (
     <div className="app">
       <header>
@@ -192,55 +143,41 @@ function App() {
           {score.total > 0 && ` (${Math.round((score.correct / score.total) * 100)}%)`}
         </div>
       </header>
-
-      <div className="card">
-        <div className="progress">
-          {mode === 'words' ? 'Word' : 'Verb'} {currentIndex + 1} of {currentList.length}
-        </div>
-
-        <div className="word-display">
-          <label>{questionText}</label>
-          <div className="english-word">{displayWord}</div>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            ref={inputRef}
-            type="text"
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            placeholder={placeholder}
-            disabled={feedback !== ''}
-            autoFocus
-          />
-          
-          {!feedback && (
-            <button type="submit" className="btn-primary">
-              Check Answer
-            </button>
-          )}
-        </form>
-
-        {feedback && (
-          <div className={`feedback ${feedback.includes('✅') ? 'correct' : 'incorrect'}`}>
-            {feedback}
-          </div>
-        )}
-
-        {feedback && (
-          <div className="actions">
-            {!isLastItem ? (
-              <button ref={nextButtonRef} onClick={handleNext} className="btn-primary">
-                Next {mode === 'words' ? 'Word' : 'Verb'} →
-              </button>
-            ) : (
-              <button ref={nextButtonRef} onClick={handleRestart} className="btn-primary">
-                🔄 Start Over
-              </button>
-            )}
-          </div>
-        )}
-      </div>
+      {mode === 'words' ? (
+        <WordsCard
+          currentWord={words[currentIndex]}
+          currentIndex={currentIndex}
+          total={words.length}
+          userAnswer={userAnswer}
+          onUserAnswerChange={e => setUserAnswer(e.target.value)}
+          onSubmit={handleSubmit}
+          feedback={feedback}
+          showAnswer={showAnswer}
+          isLastItem={isLastItem}
+          onNext={handleNext}
+          onRestart={handleRestart}
+          inputRef={inputRef}
+          nextButtonRef={nextButtonRef}
+          score={score}
+        />
+      ) : (
+        <VerbsCard
+          currentVerb={verbs[currentIndex]}
+          currentIndex={currentIndex}
+          total={verbs.length}
+          userAnswer={userAnswer}
+          onUserAnswerChange={e => setUserAnswer(e.target.value)}
+          onSubmit={handleSubmit}
+          feedback={feedback}
+          showAnswer={showAnswer}
+          isLastItem={isLastItem}
+          onNext={handleNext}
+          onRestart={handleRestart}
+          inputRef={inputRef}
+          nextButtonRef={nextButtonRef}
+          score={score}
+        />
+      )}
     </div>
   )
 }
