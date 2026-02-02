@@ -1,62 +1,18 @@
 [
   {
-    "english": "languages",
-    "swedish": "språk"
+    "english": "see, saw, seen",
+    "swedish": "se, såg, sett"
   },
   {
-    "english": "I did!",
-    "swedish": "Det gjorde jag!"
+    "english": "sing, sang, sung",
+    "swedish": "sjunga, sjöng, sjungit"
   },
   {
-    "english": "taught me",
-    "swedish": "lärde mig"
+    "english": "sit, sat, sat",
+    "swedish": "sitta, satt, suttit"
   },
   {
-    "english": "letter",
-    "swedish": "brev"
-  },
-  {
-    "english": "as fast as you can",
-    "swedish": "så snabbt du kan"
-  },
-  {
-    "english": "oven",
-    "swedish": "ugn"
-  },
-  {
-    "english": "believe",
-    "swedish": "tro"
-  },
-  {
-    "english": "beauty",
-    "swedish": "skönhet"
-  },
-  {
-    "english": "the border",
-    "swedish": "gränsen"
-  },
-  {
-    "english": "bring",
-    "swedish": "ta med"
-  },
-  {
-    "english": "seventh",
-    "swedish": "sjunde"
-  },
-  {
-    "english": "largest",
-    "swedish": "största"
-  },
-  {
-    "english": "geese",
-    "swedish": "gäss"
-  },
-  {
-    "english": "sounds",
-    "swedish": "ljud"
-  },
-  {
-    "english": "population",
-    "swedish": "befolkning"
+    "english": "sleep, slept, slept",
+    "swedish": "sova, sov, sovit"
   }
 ]
