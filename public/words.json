@@ -14,5 +14,61 @@
   {
     "english": "sleep, slept, slept",
     "swedish": "sova, sov, sovit"
+  },
+  {
+    "english": "drives",
+    "swedish": "kör"
+  },
+  {
+    "english": "car park",
+    "swedish": "parkering"
+  },
+  {
+    "english": "shopping centre",
+    "swedish": "köpcenter"
+  },
+  {
+    "english": "the ground",
+    "swedish": "marken"
+  },
+  {
+    "english": "checked",
+    "swedish": "rutiga"
+  },
+  {
+    "english": "napkins",
+    "swedish": "servetter"
+  },
+  {
+    "english": "Are you ready to order?",
+    "swedish": "Är ni redo att beställa?"
+  },
+  {
+    "english": "I'll have",
+    "swedish": "Jag vill ha"
+  },
+  {
+    "english": "large",
+    "swedish": "stor"
+  },
+  {
+    "english": "mess",
+    "swedish": "röra"
+  },
+  {
+    "english": "I didn't order this!",
+    "swedish": "Jag beställde inte detta!"
+  },
+  {
+    "english": "chips",
+    "swedish": "pommes frites"
+  },
+  {
+    "english": "gravy",
+    "swedish": "brunsås"
+  },
+  {
+    "english": "quiet",
+    "swedish": "tyst"
   }
 ]
