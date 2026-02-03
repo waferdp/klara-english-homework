@@ -42,7 +42,7 @@ function App() {
       correctAnswer = currentWord.direction === 'toSwedish' 
         ? currentWord.swedish 
         : currentWord.english
-      isCorrect = userAnswer.replace(/[\s?!]+/g, '').toLowerCase() === correctAnswer.replace(/[\s?!]+/g, '').toLowerCase()
+      isCorrect = userAnswer.replace(/[\s?,!]+/g, '').toLowerCase() === correctAnswer.replace(/[\s?,!]+/g, '').toLowerCase()
     } else {
       // Irregular verbs mode
       const currentVerb = verbs[currentIndex]
