@@ -79,6 +79,10 @@ header h1 {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
+.score-screen .final-score {
+  margin-bottom: 40px;
+}
+
 .progress {
   text-align: center;
   color: #666;
@@ -92,11 +96,20 @@ header h1 {
   margin-bottom: 30px;
 }
 
-.word-display label {
-  display: block;
+.word-display label.question {
+  display: inline-block;
   color: #666;
   margin-bottom: 15px;
   font-size: 1rem;
+}
+
+.word-display label.form-clue {
+  display: inline-block;
+  color: #555;
+  margin-left: 1rem;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .english-word {

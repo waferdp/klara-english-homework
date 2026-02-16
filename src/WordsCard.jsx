@@ -60,8 +60,8 @@ export default function WordsCard({
               Next Word →
             </button>
           ) : (
-            <button ref={nextButtonRef} onClick={onRestart} className="btn-primary">
-              🔄 Start Over
+            <button ref={nextButtonRef} onClick={onNext} className="btn-primary">
+              Finish
             </button>
           )}
         </div>

@@ -23,7 +23,7 @@ export default function VerbsCard({
     past: 'Yesterday I...',
     pastParticiple: 'I have/had...'
   }
-  const questionText = `What is the ${currentVerb.testForm.replace('pastParticiple', 'past participle')} form? ${formClues[currentVerb.testForm]}`
+  const questionText = `What is the ${currentVerb.testForm.replace('pastParticiple', 'past participle')} form?`
   const placeholder = 'Type the English verb form...'
 
   return (
@@ -33,7 +33,8 @@ export default function VerbsCard({
       </div>
       <div className="word-display">
         <div className="english-word">{displayWord}</div>
-        <label>{questionText}</label>
+        <label className="question">{questionText}</label>
+        <label className="form-clue">{formClues[currentVerb.testForm]}</label>
       </div>
       <form onSubmit={onSubmit}>
         <input
@@ -63,8 +64,8 @@ export default function VerbsCard({
               Next Verb →
             </button>
           ) : (
-            <button ref={nextButtonRef} onClick={onRestart} className="btn-primary">
-              🔄 Start Over
+            <button ref={nextButtonRef} onClick={onNext} className="btn-primary">
+              Finish
             </button>
           )}
         </div>

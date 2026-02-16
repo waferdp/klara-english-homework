@@ -3,8 +3,22 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { loadWords, reshuffleWords } from './wordsModule.js'
 import { loadVerbs, reshuffleVerbs } from './verbsModule.js'
+
 import WordsCard from './WordsCard.jsx'
 import VerbsCard from './VerbsCard.jsx'
+
+function ScoreScreen({ score, total, onRestart, mode }) {
+  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+  return (
+    <div className="card score-screen">
+      <h2>🎉 All {mode === 'words' ? 'words' : 'verbs'} completed!</h2>
+      <div className="final-score">Score: {score} / {total} ({percent}%)</div>
+      <button className="btn-primary" onClick={onRestart} autoFocus>
+        🔄 Try Again
+      </button>
+    </div>
+  );
+}
 
 function App() {
   const [mode, setMode] = useState('words') // 'words' or 'verbs'
@@ -15,6 +29,7 @@ function App() {
   const [feedback, setFeedback] = useState('')
   const [showAnswer, setShowAnswer] = useState(false)
   const [score, setScore] = useState({ correct: 0, total: 0 })
+  const [showScoreScreen, setShowScoreScreen] = useState(false)
   
   const inputRef = useRef(null)
   const nextButtonRef = useRef(null)
@@ -75,63 +90,64 @@ function App() {
   }
 
   const handleNext = () => {
-    const currentList = mode === 'words' ? words : verbs
+    const currentList = mode === 'words' ? words : verbs;
     if (currentIndex < currentList.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-      setUserAnswer('')
-      setFeedback('')
-      setShowAnswer(false)
-      // Focus input for the next word
-      setTimeout(() => inputRef.current?.focus(), 0)
+      setCurrentIndex(currentIndex + 1);
+      setUserAnswer('');
+      setFeedback('');
+      setShowAnswer(false);
+      setTimeout(() => inputRef.current?.focus(), 0);
     } else {
-      setFeedback('🎉 You\'ve completed all ' + (mode === 'words' ? 'words' : 'verbs') + '!')
+      setShowScoreScreen(true);
     }
-  }
+  }  
 
   const handleRestart = () => {
     if (mode === 'words') {
-      setWords(reshuffleWords(words))
+      setWords(reshuffleWords(words));
     } else {
-      setVerbs(shu(verbs))
+      setVerbs(reshuffleVerbs(verbs));
     }
-    setCurrentIndex(0)
-    setUserAnswer('')
-    setFeedback('')
-    setShowAnswer(false)
-    setScore({ correct: 0, total: 0 })
-    // Focus input when restarting
-    setTimeout(() => inputRef.current?.focus(), 0)
-  }
+    setCurrentIndex(0);
+    setUserAnswer('');
+    setFeedback('');
+    setShowAnswer(false);
+    setScore({ correct: 0, total: 0 });
+    setShowScoreScreen(false);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }  
 
   const switchMode = (newMode) => {
-    setMode(newMode)
-    setCurrentIndex(0)
-    setUserAnswer('')
-    setFeedback('')
-    setShowAnswer(false)
-    setScore({ correct: 0, total: 0 })
-    setTimeout(() => inputRef.current?.focus(), 0)
+    setMode(newMode);
+    setCurrentIndex(0);
+    setUserAnswer('');
+    setFeedback('');
+    setShowAnswer(false);
+    setScore({ correct: 0, total: 0 });
+    setShowScoreScreen(false);
+    setTimeout(() => inputRef.current?.focus(), 0);
   }
 
   const currentList = mode === 'words' ? words : verbs
   
   if (currentList.length === 0) {
-    return <div className="loading">Loading {mode === 'words' ? 'words' : 'verbs'}...</div>
+    return <div className="loading">Loading {mode === 'words' ? 'words' : 'verbs'}...</div>;
   }
 
   const isLastItem = currentIndex === currentList.length - 1;
+
   return (
     <div className="app">
       <header>
         <h1>🇬🇧 English Practice 🇸🇪</h1>
         <div className="mode-selector">
-          <button 
+          <button
             className={`mode-btn ${mode === 'words' ? 'active' : ''}`}
             onClick={() => switchMode('words')}
           >
             Word Translation
           </button>
-          <button 
+          <button
             className={`mode-btn ${mode === 'verbs' ? 'active' : ''}`}
             onClick={() => switchMode('verbs')}
           >
@@ -139,11 +155,18 @@ function App() {
           </button>
         </div>
         <div className="score">
-          Score: {score.correct}/{score.total} 
+          Score: {score.correct}/{score.total}
           {score.total > 0 && ` (${Math.round((score.correct / score.total) * 100)}%)`}
         </div>
       </header>
-      {mode === 'words' ? (
+      {showScoreScreen ? (
+        <ScoreScreen
+          score={score.correct}
+          total={score.total}
+          onRestart={handleRestart}
+          mode={mode}
+        />
+      ) : mode === 'words' ? (
         <WordsCard
           currentWord={words[currentIndex]}
           currentIndex={currentIndex}
@@ -179,7 +202,7 @@ function App() {
         />
       )}
     </div>
-  )
+  );
 }
 
 export default App
