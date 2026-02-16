@@ -1,74 +1,58 @@
 [
   {
-    "english": "see, saw, seen",
-    "swedish": "se, såg, sett"
+    "english": "spinach",
+    "swedish": "spenat"
   },
   {
-    "english": "sing, sang, sung",
-    "swedish": "sjunga, sjöng, sjungit"
+    "english": "for a change",
+    "swedish": "som omväxling"
   },
   {
-    "english": "sit, sat, sat",
-    "swedish": "sitta, satt, suttit"
+    "english": "I can't decide!",
+    "swedish": "Jag kan inte bestämma mig!"
   },
   {
-    "english": "sleep, slept, slept",
-    "swedish": "sova, sov, sovit"
+    "english": "garlic bread",
+    "swedish": "vitlöksbröd"
   },
   {
-    "english": "drives",
-    "swedish": "kör"
+    "english": "Do you want anything else?",
+    "swedish": "Vill du ha något mer?"
   },
   {
-    "english": "car park",
-    "swedish": "parkering"
+    "english": "Me neither!",
+    "swedish": "Inte jag heller!"
   },
   {
-    "english": "shopping centre",
-    "swedish": "köpcenter"
+    "english": "I'm full",
+    "swedish": "Jag är mätt"
   },
   {
-    "english": "the ground",
-    "swedish": "marken"
+    "english": "honey",
+    "swedish": "honung"
   },
   {
-    "english": "checked",
-    "swedish": "rutiga"
+    "english": "boring",
+    "swedish": "tråkiga"
   },
   {
-    "english": "napkins",
-    "swedish": "servetter"
+    "english": "exciting",
+    "swedish": "spännande"
   },
   {
-    "english": "Are you ready to order?",
-    "swedish": "Är ni redo att beställa?"
+    "english": "weirdest",
+    "swedish": "konstigaste"
   },
   {
-    "english": "I'll have",
-    "swedish": "Jag vill ha"
+    "english": "the owners",
+    "swedish": "ägarna"
   },
   {
-    "english": "large",
-    "swedish": "stor"
+    "english": "at first",
+    "swedish": "först"
   },
   {
-    "english": "mess",
-    "swedish": "röra"
-  },
-  {
-    "english": "I didn't order this!",
-    "swedish": "Jag beställde inte detta!"
-  },
-  {
-    "english": "chips",
-    "swedish": "pommes frites"
-  },
-  {
-    "english": "gravy",
-    "swedish": "brunsås"
-  },
-  {
-    "english": "quiet",
-    "swedish": "tyst"
+    "english": "loo",
+    "swedish": "toalett"
   }
 ]

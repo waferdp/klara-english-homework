@@ -1,26 +1,26 @@
 [
   {
-    "swedish": "se",
-    "infinitive": "see",
-    "past": "saw",
-    "pastParticiple": "seen"
+    "swedish": "tala",
+    "infinitive": "speak",
+    "past": "spoke",
+    "pastParticiple": "spoken"
   },
   {
-    "swedish": "sjunga",
-    "infinitive": "sing",
-    "past": "sang",
-    "pastParticiple": "sung"
+    "swedish": "ta",
+    "infinitive": "take",
+    "past": "took",
+    "pastParticiple": "taken"
   },
   {
-    "swedish": "sitta",
-    "infinitive": "sit",
-    "past": "sat",
-    "pastParticiple": "sat"
+    "swedish": "tänka",
+    "infinitive": "think",
+    "past": "thought",
+    "pastParticiple": "thought"
   },
   {
-    "swedish": "sova",
-    "infinitive": "sleep",
-    "past": "slept",
-    "pastParticiple": "slept"
+    "swedish": "skriva",
+    "infinitive": "write",
+    "past": "wrote",
+    "pastParticiple": "written"
   }
 ]
