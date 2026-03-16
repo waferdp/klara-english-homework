@@ -15,7 +15,9 @@ export default function WordsCard({
   onRestart,
   inputRef,
   nextButtonRef,
-  score
+  score,
+  practiceMode,
+  lastAnswerCorrect
 }) {
   const sourceWord = currentWord.direction === 'toSwedish' ? currentWord.english : currentWord.swedish
   const targetLanguage = currentWord.direction === 'toSwedish' ? 'Swedish' : 'English'
@@ -39,12 +41,12 @@ export default function WordsCard({
           value={userAnswer}
           onChange={onUserAnswerChange}
           placeholder={placeholder}
-          disabled={feedback !== ''}
+          disabled={feedback !== '' && !(practiceMode && lastAnswerCorrect === false)}
           autoFocus
         />
-        {!feedback && (
+        {(!feedback || (practiceMode && lastAnswerCorrect === false)) && (
           <button type="submit" className="btn-primary">
-            Check Answer
+            {practiceMode && lastAnswerCorrect === false ? 'Try Again' : 'Check Answer'}
           </button>
         )}
       </form>
@@ -55,7 +57,7 @@ export default function WordsCard({
       )}
       {feedback && (
         <div className="actions">
-          {!isLastItem ? (
+          {practiceMode && lastAnswerCorrect === false ? null : !isLastItem ? (
             <button ref={nextButtonRef} onClick={onNext} className="btn-primary">
               Next Word →
             </button>

@@ -22,12 +22,14 @@ function ScoreScreen({ score, total, onRestart, mode }) {
 
 function App() {
   const [mode, setMode] = useState('words') // 'words' or 'verbs'
+  const [practiceMode, setPracticeMode] = useState(false)
   const [words, setWords] = useState([])
   const [verbs, setVerbs] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [userAnswer, setUserAnswer] = useState('')
   const [feedback, setFeedback] = useState('')
   const [showAnswer, setShowAnswer] = useState(false)
+  const [lastAnswerCorrect, setLastAnswerCorrect] = useState(null)
   const [score, setScore] = useState({ correct: 0, total: 0 })
   const [showScoreScreen, setShowScoreScreen] = useState(false)
   
@@ -78,9 +80,11 @@ function App() {
 
     if (isCorrect) {
       setFeedback('✅ Correct! Well done!')
+      setLastAnswerCorrect(true)
       setScore(prev => ({ correct: prev.correct + 1, total: prev.total + 1 }))
     } else {
       setFeedback(`❌ Not quite. The correct answer is: ${correctAnswer}`)
+      setLastAnswerCorrect(false)
       setScore(prev => ({ ...prev, total: prev.total + 1 }))
       setShowAnswer(true)
     }
@@ -90,12 +94,22 @@ function App() {
   }
 
   const handleNext = () => {
+    if (practiceMode && lastAnswerCorrect === false) {
+      setUserAnswer('')
+      setFeedback('')
+      setShowAnswer(false)
+      setLastAnswerCorrect(null)
+      setTimeout(() => inputRef.current?.focus(), 0)
+      return
+    }
+
     const currentList = mode === 'words' ? words : verbs;
     if (currentIndex < currentList.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setUserAnswer('');
       setFeedback('');
       setShowAnswer(false);
+      setLastAnswerCorrect(null);
       setTimeout(() => inputRef.current?.focus(), 0);
     } else {
       setShowScoreScreen(true);
@@ -112,6 +126,7 @@ function App() {
     setUserAnswer('');
     setFeedback('');
     setShowAnswer(false);
+    setLastAnswerCorrect(null);
     setScore({ correct: 0, total: 0 });
     setShowScoreScreen(false);
     setTimeout(() => inputRef.current?.focus(), 0);
@@ -123,6 +138,7 @@ function App() {
     setUserAnswer('');
     setFeedback('');
     setShowAnswer(false);
+    setLastAnswerCorrect(null);
     setScore({ correct: 0, total: 0 });
     setShowScoreScreen(false);
     setTimeout(() => inputRef.current?.focus(), 0);
@@ -154,6 +170,14 @@ function App() {
             Irregular Verbs
           </button>
         </div>
+        <div className="practice-mode-toggle">
+          <button
+            className={`mode-btn practice-btn ${practiceMode ? 'active' : ''}`}
+            onClick={() => setPracticeMode(prev => !prev)}
+          >
+            Practice Mode: {practiceMode ? 'On' : 'Off'}
+          </button>
+        </div>
         <div className="score">
           Score: {score.correct}/{score.total}
           {score.total > 0 && ` (${Math.round((score.correct / score.total) * 100)}%)`}
@@ -182,6 +206,8 @@ function App() {
           inputRef={inputRef}
           nextButtonRef={nextButtonRef}
           score={score}
+          practiceMode={practiceMode}
+          lastAnswerCorrect={lastAnswerCorrect}
         />
       ) : (
         <VerbsCard
@@ -199,6 +225,8 @@ function App() {
           inputRef={inputRef}
           nextButtonRef={nextButtonRef}
           score={score}
+          practiceMode={practiceMode}
+          lastAnswerCorrect={lastAnswerCorrect}
         />
       )}
     </div>
