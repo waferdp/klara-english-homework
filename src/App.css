@@ -152,6 +152,33 @@ input[type="text"]:disabled {
   cursor: not-allowed;
 }
 
+textarea {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.3s;
+  font-family: inherit;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+textarea:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.feedback.incorrect {
+  line-height: 1.5;
+}
+
 .btn-primary {
   width: 100%;
   padding: 15px 30px;
