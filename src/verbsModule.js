@@ -1,14 +1,6 @@
 // src/verbsModule.js
 // Handles loading and shuffling of irregular verbs
-
-
-// Helper to shuffle an array
-function shuffle(array) {
-  return array
-    .map(value => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-}
+import { shuffle } from './utils.js'
 
 export async function loadVerbs() {
   const response = await fetch(`${import.meta.env.BASE_URL}irregular-verbs.json`)
@@ -23,5 +15,4 @@ export async function loadVerbs() {
   return shuffle(allForms)
 }
 
-
-export const reshuffleVerbs = shuffle;
+export const reshuffleVerbs = (verbs) => shuffle(verbs)
