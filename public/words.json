@@ -1,70 +1,54 @@
 [
   {
-    "english": "sparkly",
-    "swedish": "gnistrande"
+    "english": "ringtone",
+    "swedish": "ringsignal"
   },
   {
-    "english": "shouting",
-    "swedish": "ropar"
+    "english": "What's up?",
+    "swedish": "Vad händer?"
   },
   {
-    "english": "the third time",
-    "swedish": "tredje gången"
+    "english": "chilling",
+    "swedish": "tar det lugnt"
   },
   {
-    "english": "a couple of",
-    "swedish": "ett par"
+    "english": "Sounds relaxing!",
+    "swedish": "Det låter avslappnande!"
   },
   {
-    "english": "multicolored",
-    "swedish": "flerfärgade"
+    "english": "going on",
+    "swedish": "pågår"
   },
   {
-    "english": "feathers",
-    "swedish": "fjädrar"
+    "english": "noisy",
+    "swedish": "bullrigt, högljutt"
   },
   {
-    "english": "finishes",
-    "swedish": "slutar"
+    "english": "bowling",
+    "swedish": "bowlar"
   },
   {
-    "english": "however",
-    "swedish": "dock"
+    "english": "Who's winning?",
+    "swedish": "Vem vinner?"
   },
   {
-    "english": "wig",
-    "swedish": "peruk"
+    "english": "Catch you later",
+    "swedish": "Vi hörs senare"
   },
   {
-    "english": "lies awake",
-    "swedish": "ligger vaken"
+    "english": "pre-recorded",
+    "swedish": "föreinspelade"
   },
   {
-    "english": "howling",
-    "swedish": "ylar"
+    "english": "tracks",
+    "swedish": "spår"
   },
   {
-    "english": "wolf",
-    "swedish": "varg"
+    "english": "inspired",
+    "swedish": "inspirerat"
   },
   {
-    "english": "banging",
-    "swedish": "slår"
-  },
-  {
-    "english": "roof",
-    "swedish": "tak"
-  },
-  {
-    "english": "leaking",
-    "swedish": "läcker"
-  },
-  {
-    "english": "never mind",
-    "swedish": "bry dig inte om det"
-  },
-  {
-    "english": "living room",
-    "swedish": "vardagsrum"
-  }  
+    "english": "soul",
+    "swedish": "själen"
+  }
 ]
