@@ -1,66 +1,70 @@
 [
   {
-    "english": "inventive",
-    "swedish": "uppfinningsrika"
+    "english": "teenagers",
+    "swedish": "tonåringar"
   },
   {
-    "english": "inventions",
-    "swedish": "uppfinningar"
+    "english": "social media",
+    "swedish": "sociala medier"
   },
   {
-    "english": "atoms",
-    "swedish": "atomer"
+    "english": "spend time",
+    "swedish": "tillbringar tid"
   },
   {
-    "english": "failed",
-    "swedish": "misslyckades"
+    "english": "begin",
+    "swedish": "börja"
   },
   {
-    "english": "research",
-    "swedish": "forskning"
+    "english": "description",
+    "swedish": "beskrivning"
   },
   {
-    "english": "develop",
-    "swedish": "utveckla"
+    "english": "yourself",
+    "swedish": "dig själv"
   },
   {
-    "english": "burns",
-    "swedish": "brännskador"
+    "english": "age",
+    "swedish": "ålder"
   },
   {
-    "english": "involves",
+    "english": "age group",
+    "swedish": "åldersgrupp"
+  },
+  {
+    "english": "worse",
+    "swedish": "värre"
+  },
+  {
+    "english": "survey",
+    "swedish": "undersökning"
+  },
+  {
+    "english": "Dear",
+    "swedish": "Bästa"
+  },
+  {
+    "english": "in respoonse",
+    "swedish": "som svar"
+  },
+  {
+    "english": "request",
+    "swedish": "begäran"
+  },
+  {
+    "english": "use",
+    "swedish": "användning"
+  },
+  {
+    "english": "include",
     "swedish": "innefattar"
   },
   {
-    "english": "patch",
-    "swedish": "stycke"
+    "english": "follow",
+    "swedish": "följer"
   },
   {
-    "english": "skin cells",
-    "swedish": "hudceller"
-  },
-  {
-    "english": "lab",
-    "swedish": "laboratorium"
-  },
-  {
-    "english": "create",
-    "swedish": "skapa"
-  },
-  {
-    "english": "mapping",
-    "swedish": "kartläggning"
-  },
-  {
-    "english": "company",
-    "swedish": "företag"
-  },
-  {
-    "english": "located",
-    "swedish": "beläget"
-  },
-  {
-    "english": "nearby",
-    "swedish": "i närheten"
+    "english": "comment",
+    "swedish": "kommenterar"
   }
 ]
