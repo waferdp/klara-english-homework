@@ -16,6 +16,7 @@ import { validateWordAnswer, validateVerbAnswer, validateSentenceAnswer } from '
 
 function App() {
   const [mode, setMode] = useState('words')
+  const [wordLanguage, setWordLanguage] = useState('english')
   const [practiceMode, setPracticeMode] = useState(false)
   const [words, setWords] = useState([])
   const [verbs, setVerbs] = useState([])
@@ -32,9 +33,12 @@ function App() {
   const nextButtonRef = useRef(null)
 
   useEffect(() => {
-    loadWords()
+    loadWords(wordLanguage)
       .then(setWords)
       .catch(error => console.error('Error loading words:', error))
+  }, [wordLanguage])
+
+  useEffect(() => {
     loadVerbs()
       .then(setVerbs)
       .catch(error => console.error('Error loading verbs:', error))
@@ -51,7 +55,7 @@ function App() {
 
     if (mode === 'words') {
       const currentWord = words[currentIndex]
-      result = await validateWordAnswer(userAnswer, currentWord)
+      result = await validateWordAnswer(userAnswer, currentWord, wordLanguage)
     } else if (mode === 'verbs') {
       const currentVerb = verbs[currentIndex]
       result = await validateVerbAnswer(userAnswer, currentVerb)
@@ -146,6 +150,19 @@ function App() {
     setTimeout(() => inputRef.current?.focus(), 0)
   }
 
+  const switchWordLanguage = (newLanguage) => {
+    if (newLanguage === wordLanguage) return
+    setWordLanguage(newLanguage)
+    setWords([])
+    setCurrentIndex(0)
+    setUserAnswer('')
+    setFeedback('')
+    setLastAnswerCorrect(null)
+    setIsCheckingOnline(false)
+    setScore({ correct: 0, total: 0 })
+    setShowScoreScreen(false)
+  }
+
   const currentList = mode === 'words' ? words : mode === 'verbs' ? verbs : phrases
   
   if (currentList.length === 0) {
@@ -159,6 +176,8 @@ function App() {
       <Header
         mode={mode}
         onSwitchMode={switchMode}
+        wordLanguage={wordLanguage}
+        onSwitchWordLanguage={switchWordLanguage}
         practiceMode={practiceMode}
         onTogglePractice={() => setPracticeMode(prev => !prev)}
         score={score}
@@ -187,6 +206,7 @@ function App() {
           score={score}
           practiceMode={practiceMode}
           lastAnswerCorrect={lastAnswerCorrect}
+          wordLanguage={wordLanguage}
         />
       ) : mode === 'verbs' ? (
         <VerbsCard

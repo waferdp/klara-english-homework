@@ -1,9 +1,7 @@
 import { normalizeForPhraseMatch, sentenceContainsPhrase, validateSentenceWithLanguageTool } from './utils.js'
 
-export async function validateWordAnswer(userAnswer, currentWord) {
-  const correctAnswer = currentWord.direction === 'toSwedish'
-    ? currentWord.swedish
-    : currentWord.english
+export async function validateWordAnswer(userAnswer, currentWord, language = 'english') {
+  const correctAnswer = currentWord[language]
 
   const normalizedUser = userAnswer.replace(/[\s?,!]+/g, '').toLowerCase()
   const normalizedCorrect = correctAnswer.replace(/[\s?,!]+/g, '').toLowerCase()

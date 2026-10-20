@@ -17,12 +17,11 @@ export default function WordsCard({
   nextButtonRef,
   score,
   practiceMode,
-  lastAnswerCorrect
+  lastAnswerCorrect,
+  wordLanguage
 }) {
-  const sourceWord = currentWord.direction === 'toSwedish' ? currentWord.english : currentWord.swedish
-  const targetLanguage = currentWord.direction === 'toSwedish' ? 'Swedish' : 'English'
-  const sourceLanguage = currentWord.direction === 'toSwedish' ? 'English' : 'Swedish'
-  const questionText = `Translate this ${sourceLanguage} word to ${targetLanguage}:`
+  const targetLanguage = wordLanguage === 'french' ? 'French' : 'English'
+  const questionText = `Translate this Swedish word to ${targetLanguage}:`
   const placeholder = `Type the ${targetLanguage} translation...`
 
   return (
@@ -32,7 +31,7 @@ export default function WordsCard({
       </div>
       <div className="word-display">
         <label>{questionText}</label>
-        <div className="english-word">{sourceWord}</div>
+        <div className="english-word">{currentWord.swedish}</div>
       </div>
       <form onSubmit={onSubmit}>
         <input

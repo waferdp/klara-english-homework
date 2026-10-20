@@ -1,6 +1,7 @@
-a React app for practicing English words with their Swedish translations, I'll set up a new React project and implement a simple interface where your daughter can practice. The app will:
+# English and French Word Practice
 
-Load a JSON file with English-Swedish word pairs.
-Show an English word and let the user type the Swedish translation.
-Check the answer and provide feedback.
-Allow moving to the next word.
+Practice translating Swedish words into English or French. Choose the target language
+in Word Translation mode; switching languages starts a fresh quiz with a reset score.
+
+The app also includes irregular verb practice and sentence building. These modes are
+unchanged by the word translation language setting.

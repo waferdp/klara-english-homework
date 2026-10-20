@@ -2,21 +2,13 @@
 // Handles loading and shuffling of words
 import { shuffle } from './utils.js'
 
-export async function loadWords() {
-  const response = await fetch(`${import.meta.env.BASE_URL}words.json`)
+export async function loadWords(language = 'english') {
+  const fileName = language === 'french' ? 'french-words.json' : 'words.json'
+  const response = await fetch(`${import.meta.env.BASE_URL}${fileName}`)
   const data = await response.json()
-  // Assign random direction and shuffle
-  const prepared = [...data].map(word => ({
-    ...word,
-    direction: Math.random() > 0.5 ? 'toSwedish' : 'toEnglish'
-  }))
-  return shuffle(prepared)
+  return shuffle(data)
 }
 
 export function reshuffleWords(words) {
-  const prepared = [...words].map(word => ({
-    ...word,
-    direction: Math.random() > 0.5 ? 'toSwedish' : 'toEnglish'
-  }))
-  return shuffle(prepared)
+  return shuffle(words)
 }
