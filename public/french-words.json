@@ -1,38 +1,34 @@
 [
     {
-        "french": "un chat",
-        "swedish": "en katt"
+        "french": "treize",
+        "swedish": "tretton"
     },
     {
-        "french": "une maison",
-        "swedish": "ett hus"
+        "french": "quatorze",
+        "swedish": "fjorton"
     },
     {
-        "french": "un garçon",
-        "swedish": "en pojke"
+        "french": "quinze",
+        "swedish": "femton"
     },
     {
-        "french": "un train",
-        "swedish": "ett tåg"
+        "french": "seize",
+        "swedish": "sexton"
     },
     {
-        "french": "une chaise",
-        "swedish": "en stol"
+        "french": "dix-sept",
+        "swedish": "sjutton"
     },
     {
-        "french": "une voiture",
-        "swedish": "en bil"
+        "french": "dix-huit",
+        "swedish": "arton"
     },
     {
-        "french": "un vélo",
-        "swedish": "en cykel"
+        "french": "dix-neuf",
+        "swedish": "nitton"
     },
     {
-        "french": "un livre",
-        "swedish": "en bok"
-    },
-    {
-        "french": "une fille",
-        "swedish": "en tjej"
+        "french": "vingt",
+        "swedish": "tjugo"
     }
 ]
