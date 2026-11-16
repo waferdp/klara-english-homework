@@ -1,34 +1,22 @@
 [
     {
-        "french": "treize",
-        "swedish": "tretton"
+        "french": "le chien",
+        "swedish": "hunden"
     },
     {
-        "french": "quatorze",
-        "swedish": "fjorton"
+        "french": "le verre",
+        "swedish": "glaset"
     },
     {
-        "french": "quinze",
-        "swedish": "femton"
+        "french": "la voiture",
+        "swedish": "bilen"
     },
     {
-        "french": "seize",
-        "swedish": "sexton"
+        "french": "la table",
+        "swedish": "bordet"
     },
     {
-        "french": "dix-sept",
-        "swedish": "sjutton"
-    },
-    {
-        "french": "dix-huit",
-        "swedish": "arton"
-    },
-    {
-        "french": "dix-neuf",
-        "swedish": "nitton"
-    },
-    {
-        "french": "vingt",
-        "swedish": "tjugo"
+        "french": "l'avion",
+        "swedish": "planet"
     }
 ]
